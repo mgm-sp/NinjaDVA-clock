@@ -1,8 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", function() {
 	setInterval(function(){
 		document.getElementById('txt').innerHTML = clock.getCurrentTime();
 	}, 500);
+	$("#clock").fitText();
 });
 
 // getting domain name from fqdn
