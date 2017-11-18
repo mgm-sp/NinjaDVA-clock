@@ -42,6 +42,12 @@ var connection=new WebSocket("ws://clock."+domain+":8080",'json');
 function config(data) {
 	connection.send(JSON.stringify(data));
 }
+
+function parseTime(t){
+	var t_ary = t.split(":");
+	return new Date(1970,1,1,t_ary[0],t_ary[1],t_ary[2],0);
+}
+
 connection.onmessage = function (e) {
 	var instructions = JSON.parse(e.data);
 	switch(instructions.method){
@@ -50,14 +56,12 @@ connection.onmessage = function (e) {
 			timer = setInterval(realTime, 1000);
 			break;
 		case "countUp":
-			var t = instructions.start.split(":")
-			setTime(new Date(1970,1,1,t[0],t[1],t[2],0));
+			setTime(parseTime(instructions.start));
 			clearInterval(timer);
 			timer = setInterval(countUp, 1000);
 			break;
 		case "countDown":
-			var t = instructions.start.split(":")
-			setTime(new Date(1970,1,1,t[0],t[1],t[2],0));
+			setTime(parseTime(instructions.start));
 			clearInterval(timer);
 			timer = setInterval(countDown, 1000);
 			break;
