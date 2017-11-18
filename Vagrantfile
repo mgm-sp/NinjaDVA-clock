@@ -46,6 +46,6 @@ Vagrant.configure("2") do |config|
 
 	if File.exists?("../ninjadva.rb")
 		require "../ninjadva"
-		NinjaDVA.new(config)
+		NinjaDVA.new(config, link_widget_links: [])
 	end
 end
