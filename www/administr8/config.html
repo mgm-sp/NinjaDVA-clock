@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>A clock widget</title>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+		<script type='text/javascript' src='admin.js'></script>
+	</head>
+	<body>
+		<div>
+			<form onsubmit='return send()'>
+				<div>
+					<ul style='display: inline'>
+						<li>
+							<input type='radio' name='method' value='realTime' id='realTime' />
+							<label for='realTime'>Real Time</label>
+						</li>
+						<li>
+							<input type='radio' name='method' value='countDown' id='countDown' checked='checked' />
+							<label for='countDown'>
+								Count Down from:
+								<input id='start_countDown' type='text' value='00:05:00' onfocus='document.getElementById("countDown").checked = true' style='width: 4em' />
+							</label>
+						</li>
+						<li>
+							<input type='radio' name='method' value='countUp' id='countUp' />
+							<label for='countUp'>Count Up from:</label>
+							<input id='start_countUp' type='text' value='00:00:00' onfocus='document.getElementById("countUp").checked = true' style='width: 4em'/>
+						</li>
+						<li><input type='submit' value='Send' /></li>
+					</ul>
+				</div>
+			</form>
+			<iframe style='display: none' src='/clock.html'></iframe>
+		</div>
+	</body>
+</html>
+
