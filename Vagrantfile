@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
 	provisionFile(config,"nodejs-ws","/var/www/")
 	provisionFile(config,"nodejs-wsd","/etc/init.d/")
 
-	config.vm.provision "shell", inline: <<~END
+	config.vm.provision "shell", inline: <<-END
 			apt-get -y update
 			apt-get -y install dirmngr webfs
 			apt-key adv --recv-keys 1655A0AB68576280
