@@ -1,6 +1,18 @@
 <div id='clockwidget' class='widget' data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 	<div>
 		<h1>Time</h1>
-		<iframe style='width: 100%; height: 100%; border:none' src='http://clock.mgmsp-lab.com/clock.html'></iframe>
+		<iframe style='width: 100%; border:none' src='http://clock.mgmsp-lab.com/clock.html'></iframe>
 	</div>
 </div>
+<script>
+
+function clockwidgetFitIframe(){
+	$("#clockwidget iframe").css("height", $("#clockwidget > div").height() - $("#clockwidget h1").outerHeight(true));
+}
+
+$( document ).ready(function() {
+	clockwidgetFitIframe();
+	$("#clockwidget").resize(clockwidgetFitIframe);
+});
+
+</script>
