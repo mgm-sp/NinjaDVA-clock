@@ -74,13 +74,4 @@ connection.onmessage = function(e) {
         }, 500);
         $("#clock").fitText();
     }
-
-    /**
-     * TODO: SPLIT approach
-     * - set size of the screenmessage block dynamically
-     * - retrigger textfill when resize is recognised
-     * - implememnet linebreak
-     * - implement livetext
-     * - vertical center
-     */
 };
