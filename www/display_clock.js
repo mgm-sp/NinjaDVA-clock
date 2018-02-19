@@ -81,5 +81,6 @@ connection.onmessage = function(e) {
      * - retrigger textfill when resize is recognised
      * - implememnet linebreak
      * - implement livetext
+     * - vertical center
      */
 };

@@ -11,7 +11,9 @@ function clockwidgetFitIframe(){
 }
 
 $( document ).ready(function() {
-	clockwidgetFitIframe();
+	$("#clockwidget").one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+        clockwidgetFitIframe();
+    });
 	$("#clockwidget").resize(clockwidgetFitIframe);
 });
 

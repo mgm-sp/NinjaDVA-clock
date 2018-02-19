@@ -23,7 +23,10 @@ function send() {
             #screenmessagetext {
                 font: 2.1em 'Linux Biolinum O Regular', sans-serif;
                 color: white;
-                text-align: center;
+                display: inline-block;
+                position: absolute;
+                top: 50%; left: 50%;
+                transform: translate(-50%,-50%);
                 margin: 0;
                 text-shadow: none;
                 border: hidden;
