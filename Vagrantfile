@@ -23,6 +23,7 @@ Vagrant.configure("2") do |config|
 	ENV['LC_ALL']="en_US.UTF-8"
 
 	config.vm.provision "shell", inline: "mkdir -p /var/www && chmod a+rwX /var/www"
+	config.vm.provision "shell", inline: "rm -rf /var/www/clock"
 	config.vm.provision "file", source: "./www", destination: "/var/www/clock"
 	config.vm.provision "shell", inline: "chmod go-w -R /var/www"
 
