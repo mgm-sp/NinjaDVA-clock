@@ -37,8 +37,10 @@ Vagrant.configure("2") do |config|
 			echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodejs.list
 			apt-get -y update
 			apt-get -y install nodejs
+			mkdir /var/log/nodejs-wsd
 			cd /var/www
 			npm install ws
+			npm install winston@next
 			update-rc.d nodejs-wsd defaults
 			service nodejs-wsd start
 	END
