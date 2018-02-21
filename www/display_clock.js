@@ -54,7 +54,7 @@ connection.onmessage = function(e) {
     if (clock.getCurrentMethod() === "displayText") {
         //clear the interval of the clock
         clearInterval(intervalId);
-        $("#screenmessagetext").html(clock.getCurrentContent());
+        $("#screenmessagetext").text(clock.getCurrentContent());
         //call resize handler once
         display_text_resize_handler();
         //set resize handler as callback for resize event
@@ -63,7 +63,7 @@ connection.onmessage = function(e) {
         //remove resize handler from displaytext
         $(window).off("resize", display_text_resize_handler);
         intervalId = setInterval(function() {
-            $("#txt").html(clock.getCurrentContent());
+            $("#txt").text(clock.getCurrentContent());
         }, 500);
         $("#clock").fitText();
     }
