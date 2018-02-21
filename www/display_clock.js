@@ -1,10 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function() {
-//     setInterval(function() {
-//         document.getElementById("txt").innerHTML = clock.getCurrentContent();
-//     }, 500);
-//     //$("#clock").fitText();
-// });
-
 // getting domain name from fqdn
 var domain = window.location.host.match(/^[^\.]*\.([^:]*)/);
 if (domain) {

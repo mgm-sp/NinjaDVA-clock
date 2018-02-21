@@ -3,6 +3,7 @@
     var currentText = "";
     var currentMethod = "realTime";
     var currentCustomCSS = "";
+    var timer;
     function getCurrentTime() {
         var h = padStart(currentTime.getHours(), "\xa0");
         var m = padStart(currentTime.getMinutes(), "0");
@@ -29,7 +30,14 @@
         currentTime = new Date();
     }
     function countDown() {
-        currentTime.setSeconds(currentTime.getSeconds() - 1);
+        // handle if countdown reaches 0 -- than count up
+        if (currentTime.getHours() + currentTime.getMinutes() + currentTime.getSeconds() == 0) {
+            currentMethod = "countUp";
+            clearInterval(timer);
+            timer = setInterval(countUp, 1000);
+        } else {
+            currentTime.setSeconds(currentTime.getSeconds() - 1);
+        }
     }
     function countUp() {
         currentTime.setSeconds(currentTime.getSeconds() + 1);
@@ -45,7 +53,6 @@
     function getCurrentCustomCSS() {
         return currentCustomCSS;
     }
-    var timer;
     function parseMessage(e) {
         console.log("received: %s", e);
         currentCustomCSS = "";
