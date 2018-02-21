@@ -36,6 +36,7 @@ body {
 
 #txt
 {
+	width: 100%;
 	position: absolute;
 	transform: translate(-50%, -100%);
 	color:rgba(36, 221, 34, 0.7);
