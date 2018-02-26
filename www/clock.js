@@ -34,6 +34,7 @@
         if (currentTime.getHours() + currentTime.getMinutes() + currentTime.getSeconds() == 0) {
             currentMethod = "countUp";
             clearInterval(timer);
+            currentTime.setSeconds(currentTime.getSeconds() + 1);
             timer = setInterval(countUp, 1000);
         } else {
             currentTime.setSeconds(currentTime.getSeconds() - 1);
