@@ -36,6 +36,19 @@
             clearInterval(timer);
             currentTime.setSeconds(currentTime.getSeconds() + 1);
             timer = setInterval(countUp, 1000);
+            currentCustomCSS = `
+            #digit_bg {
+                color: #2f0c0c;
+                text-shadow: 0px 0px 10px rgba(212, 16, 16, 0.6);
+            }
+            #txt {
+                color: rgba(221, 34, 34, 0.75);
+                text-shadow: 0 0 0.25em rgba(221, 34, 34, 0.3), 0 0 0.15em #dd2222;
+            }`;
+            //change css if this script is interpreted on client
+            if (typeof window !== "undefined") {
+                window.clockwidget_set_custom_css(currentCustomCSS);
+            }
         } else {
             currentTime.setSeconds(currentTime.getSeconds() - 1);
         }

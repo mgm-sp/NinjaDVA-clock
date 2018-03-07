@@ -24,6 +24,11 @@ function display_text_resize_handler() {
     });
 }
 
+//add change css function to global context
+window.clockwidget_set_custom_css = function(sCSS) {
+    $("style").html(sCSS);
+};
+
 connection.onmessage = function(e) {
     let customCssBefore = clock.getCurrentCustomCSS();
     let currentMethodBefore = clock.getCurrentMethod();
@@ -33,9 +38,9 @@ connection.onmessage = function(e) {
     // handle css changed
     if (clock.getCurrentCustomCSS() !== customCssBefore) {
         if (clock.getCurrentCustomCSS()) {
-            $("style").html(clock.getCurrentCustomCSS());
+            clockwidget_set_custom_css(clock.getCurrentCustomCSS());
         } else {
-            $("style").html("");
+            clockwidget_set_custom_css("");
         }
     }
     //handle method changed
@@ -46,7 +51,7 @@ connection.onmessage = function(e) {
         } else {
             $("#clock").show();
             $("#screenmessage").hide();
-            $("style").html("");
+            clockwidget_set_custom_css("");
         }
     }
 
