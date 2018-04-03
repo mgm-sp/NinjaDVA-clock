@@ -58,7 +58,17 @@
     }
     function parseTime(t) {
         var t_ary = t.split(":");
-        return new Date(1970, 1, 1, t_ary[0], t_ary[1], t_ary[2], 0);
+        // test whether there are 3 element and every element is as number
+        if (
+            t_ary.length == 3 &&
+            t_ary.every(e => {
+                return !isNaN(Number(e));
+            })
+        ) {
+            return new Date(1970, 1, 1, t_ary[0], t_ary[1], t_ary[2], 0);
+        } else {
+            return new Date();
+        }
     }
 
     function getCurrentMethod() {
@@ -70,26 +80,30 @@
     function parseMessage(e) {
         console.log("received: %s", e);
         currentCustomCSS = "";
-        var instructions = JSON.parse(e);
-        currentMethod = instructions.method;
-        switch (currentMethod) {
-            case "realTime":
-                clearInterval(timer);
-                timer = setInterval(realTime, 1000);
-                break;
-            case "countUp":
-                currentTime = parseTime(instructions.start);
-                clearInterval(timer);
-                timer = setInterval(countUp, 1000);
-                break;
-            case "countDown":
-                currentTime = parseTime(instructions.start);
-                clearInterval(timer);
-                timer = setInterval(countDown, 1000);
-                break;
-            case "displayText":
-                currentText = instructions.text;
-                currentCustomCSS = instructions.custom_css;
+        try {
+            var instructions = JSON.parse(e);
+            currentMethod = instructions.method;
+            switch (currentMethod) {
+                case "realTime":
+                    clearInterval(timer);
+                    timer = setInterval(realTime, 1000);
+                    break;
+                case "countUp":
+                    currentTime = parseTime(instructions.start);
+                    clearInterval(timer);
+                    timer = setInterval(countUp, 1000);
+                    break;
+                case "countDown":
+                    currentTime = parseTime(instructions.start);
+                    clearInterval(timer);
+                    timer = setInterval(countDown, 1000);
+                    break;
+                case "displayText":
+                    currentText = instructions.text;
+                    currentCustomCSS = instructions.custom_css;
+            }
+        } catch (err) {
+            console.log("error while processing message: %s", String(err));
         }
     }
 
