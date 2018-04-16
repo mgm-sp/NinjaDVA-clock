@@ -29,7 +29,7 @@ window.clockwidget_set_custom_css = function(sCSS) {
     $("style").html(sCSS);
 };
 
-connection.onmessage = function(e) {
+var fnOnWSMessage = function(e) {
     let customCssBefore = clock.getCurrentCustomCSS();
     let currentMethodBefore = clock.getCurrentMethod();
 
@@ -73,3 +73,7 @@ connection.onmessage = function(e) {
         $("#clock").fitText();
     }
 };
+
+fnOnWSMessage({ data: '{"method":"realTime"}' });
+
+connection.onmessage = fnOnWSMessage;

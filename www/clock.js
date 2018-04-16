@@ -58,7 +58,7 @@
     }
     function parseTime(t) {
         var t_ary = t.split(":");
-        // test whether there are 3 element and every element is as number
+        // test whether there are 3 element and every element is a number
         if (
             t_ary.length == 3 &&
             t_ary.every(e => {

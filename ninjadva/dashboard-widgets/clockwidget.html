@@ -1,20 +1,31 @@
+<script>
+
+	function clockwidgetFitIframe(){
+		$("#clockwidget iframe").css("height", $("#clockwidget > div").height() - $("#clockwidget h1").outerHeight(true));
+	}
+
+	$( document ).ready(function() {
+		domain = window.location.host.match(/^[^\.]*(\..*)$/);
+		if (domain) {
+			domain = domain[1];
+		} else {
+			domain = "";
+		}
+		clockhost = "http://clock" + domain;
+		$("#clockwidgetclickiframe").attr('src', clockhost+"/clock.html");
+
+		$("#clockwidget").one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+			clockwidgetFitIframe();
+		});
+		$("#clockwidget").resize(clockwidgetFitIframe);
+	});
+
+</script>
+
 <div id='clockwidget' class='widget' data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 	<div>
 		<h1>Time</h1>
-		<iframe style='width: 100%; border:none' src='http://clock.mgmsp-lab.com/clock.html'></iframe>
+		<iframe id="clockwidgetclickiframe" style='width: 100%; border:none' src='http://clock.mgmsp-lab.com/clock.html'></iframe>
 	</div>
 </div>
-<script>
 
-function clockwidgetFitIframe(){
-	$("#clockwidget iframe").css("height", $("#clockwidget > div").height() - $("#clockwidget h1").outerHeight(true));
-}
-
-$( document ).ready(function() {
-	$("#clockwidget").one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
-        clockwidgetFitIframe();
-    });
-	$("#clockwidget").resize(clockwidgetFitIframe);
-});
-
-</script>
