@@ -1,18 +1,15 @@
-<script>
+<%
+	require "yaml"
+	domain = "mgmsp-lab.com"
+	domain = YAML::load_file("../.ninjadvarc.yaml")["domain"] if File.exists?("../.ninjadvarc.yaml")
+%><script>
 
 	function clockwidgetFitIframe(){
 		$("#clockwidget iframe").css("height", $("#clockwidget > div").height() - $("#clockwidget h1").outerHeight(true));
 	}
 
 	$( document ).ready(function() {
-		domain = window.location.host.match(/^[^\.]*(\..*)$/);
-		if (domain) {
-			domain = domain[1];
-		} else {
-			domain = "";
-		}
-		clockhost = "http://clock" + domain;
-		$("#clockwidgetclickiframe").attr('src', clockhost+"/clock.html");
+		$("#clockwidgetclickiframe").attr('src', "http://<%=domain%>/clock.html");
 
 		$("#clockwidget").one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
 			clockwidgetFitIframe();
@@ -25,7 +22,7 @@
 <div id='clockwidget' class='widget' data-row="4" data-col="1" data-sizex="1" data-sizey="1">
 	<div>
 		<h1>Time</h1>
-		<iframe id="clockwidgetclickiframe" style='width: 100%; border:none' src='http://clock.mgmsp-lab.com/clock.html'></iframe>
+		<iframe id="clockwidgetclickiframe" style='width: 100%; border:none' src='http://clock.<%=domain%>/clock.html'></iframe>
 	</div>
 </div>
 

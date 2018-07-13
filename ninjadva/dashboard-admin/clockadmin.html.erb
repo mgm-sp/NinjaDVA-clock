@@ -1,0 +1,8 @@
+<%
+	require "yaml"
+	domain = "mgmsp-lab.com"
+	domain = YAML::load_file("../.ninjadvarc.yaml")["domain"] if File.exists?("../.ninjadvarc.yaml")
+%><div>
+<h1>Time Administration</h1>
+<iframe style='width: 100%; border:none; min-height: 250px;' src='http://clock.<%=domain%>/administr8/config.html'></iframe>
+</div>

@@ -48,6 +48,13 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", inline: "service webfs restart"
 
 	if File.exists?("../ninjadva.rb")
+		config.trigger.before :up do
+			# generate dashboard files
+			require "erb"
+			["dashboard-admin/clockadmin","dashboard-widgets/clockwidget"].each{|basename|
+				File.open("ninjadva/#{basename}.html","w"){|target| target << ERB.new(File.read("ninjadva/#{basename}.html.erb")).result }
+			}
+		end
 		require "../ninjadva"
 		NinjaDVA.new(config, link_widget_links: [])
 	end
