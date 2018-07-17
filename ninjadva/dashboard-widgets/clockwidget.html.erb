@@ -9,7 +9,7 @@
 	}
 
 	$( document ).ready(function() {
-		$("#clockwidgetclickiframe").attr('src', "http://<%=domain%>/clock.html");
+		$("#clockwidgetclickiframe").attr('src', "http://clock.<%=domain%>/clock.html");
 
 		$("#clockwidget").one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
 			clockwidgetFitIframe();
