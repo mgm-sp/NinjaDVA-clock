@@ -28,7 +28,6 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", inline: "chmod go-w -R /var/www"
 
 	provisionFile(config,"nodejs-ws","/var/www/")
-	provisionFile(config,"nodejs-wsd","/etc/init.d/")
 
 	config.vm.provision "shell", inline: <<-END
 			apt-get -y update
@@ -37,12 +36,13 @@ Vagrant.configure("2") do |config|
 			echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodejs.list
 			apt-get -y update
 			apt-get -y install nodejs
-			mkdir /var/log/nodejs-wsd
 			cd /var/www
 			npm install ws
 			npm install winston@next
-			update-rc.d nodejs-wsd defaults
-			service nodejs-wsd start
+			npm install pm2 -g
+			pm2 startup
+			pm2 start nodejs-ws
+			pm2 save
 	END
 	provisionFile(config,"webfsd.conf","/etc/", mode: 660)
 	config.vm.provision "shell", inline: "service webfs restart"

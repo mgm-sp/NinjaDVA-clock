@@ -43,7 +43,7 @@ The first command enables an attacker to send arbitrary text and CSS to its vict
 If you encounter a problem regarding the module you can find a log file under
 
 ```bash
-/var/log/nodejs-wsd/nodejs.log
+/root/.pm2/logs/
 ```
 File an issue and supply us the last lines of your logfile.
 
