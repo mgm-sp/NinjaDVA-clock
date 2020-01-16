@@ -15,8 +15,7 @@ Vagrant.configure("2") do |config|
 	config.vm.synced_folder ".", "/vagrant", disabled:true
 
 	# name and version of vm image
-	config.vm.box = "debian/contrib-stretch64"
-	config.vm.box_version = "9.1.0"
+	config.vm.box = "bento/debian-10"
 
 	#set hostname for vm
 	config.vm.hostname = "clock"
@@ -33,7 +32,7 @@ Vagrant.configure("2") do |config|
 			apt-get -y update
 			apt-get -y install dirmngr webfs
 			apt-key adv --recv-keys 1655A0AB68576280
-			echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodejs.list
+			echo "deb http://deb.nodesource.com/node_12.x buster main" > /etc/apt/sources.list.d/nodejs.list
 			apt-get -y update
 			apt-get -y install nodejs
 			cd /var/www
